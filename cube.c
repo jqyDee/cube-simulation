@@ -10,7 +10,7 @@
 
 #define ALPHA 0.010
 #define BETA 0.005
-#define GAMMA 0.0075
+#define GAMMA 0.030
 
 #define SCREEN_SHIFT ((Vec3){SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0})
 #define SCREEN_SHIFT_OPP                                                       \
@@ -121,6 +121,9 @@ void print_matrix(const Matrix *matrix) {
 }
 
 void free_matrix(Matrix *matrix) {
+  for (size_t i = 0; i < matrix->rows; i++) {
+    free(matrix->data[i]);
+  }
   free(matrix->data);
   free(matrix);
 }
